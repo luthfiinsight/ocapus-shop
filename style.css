@@ -1,0 +1,374 @@
+/* --- CSS Variables for Theming --- */
+:root {
+    --bg-color: #f4f7f9;
+    --card-bg-color: rgba(255, 255, 255, 0.7);
+    --header-bg-color: rgba(255, 255, 255, 0.5);
+    --text-color: #1a1a1a;
+    --primary-color: #007bff;
+    --border-color: #e0e0e0;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --blur-effect: blur(10px);
+    --shopee-color: #EE4D2D;
+    --tiktok-color: #000000;
+    --lazada-color: #0F146D;
+}
+
+body.dark-mode {
+    --bg-color: #121212;
+    --card-bg-color: rgba(26, 26, 26, 0.7);
+    --header-bg-color: rgba(26, 26, 26, 0.5);
+    --text-color: #f1f1f1;
+    --primary-color: #389bff;
+    --border-color: #333;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --tiktok-color: #FE2C55;
+}
+
+/* --- General Styles --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    line-height: 1.6;
+}
+
+/* --- Header --- */
+.header {
+    padding: 20px;
+    text-align: center;
+    background-color: var(--header-bg-color);
+    backdrop-filter: var(--blur-effect);
+    -webkit-backdrop-filter: var(--blur-effect);
+    border-bottom: 1px solid var(--border-color);
+    }
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid var(--primary-color);
+    object-fit: cover;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.header .description {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 15px;
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
+.social-media {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-media a {
+    color: var(--text-color);
+    transition: color 0.3s, transform 0.3s;
+}
+
+.social-media a:hover {
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+/* --- Slideshow (SUDAH DIPERBARUI) --- */
+.slideshow-container {
+    max-width: 1200px; /* Lebarkan agar lebih sesuai dengan layout utama */
+    width: 95%; /* Gunakan persentase agar responsif */
+    position: relative;
+    margin: 20px auto 20px; /* Beri jarak atas dan bawah */
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px var(--shadow-color);
+    aspect-ratio: 16 / 7;
+}
+
+.slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    vertical-align: middle;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from { opacity: .4 }
+    to { opacity: 1 }
+}
+
+
+/* --- Controls (Search, Filter, Theme) --- */
+.controls-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 15px;
+}
+
+#search-input, #category-filter {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+#search-input:focus, #category-filter:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.search-container {
+    flex-grow: 1;
+}
+#search-input {
+    width: 100%;
+}
+
+/* --- Theme Switcher --- */
+.theme-switcher button {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.theme-switcher button:hover {
+    background-color: var(--card-bg-color);
+}
+.theme-switcher .moon { display: block; }
+.theme-switcher .sun { display: none; }
+body.dark-mode .theme-switcher .moon { display: none; }
+body.dark-mode .theme-switcher .sun { display: block; }
+
+/* --- Product Catalog --- */
+.main-content {
+    padding: 0 20px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-card {
+    background-color: var(--card-bg-color);
+    backdrop-filter: var(--blur-effect);
+    -webkit-backdrop-filter: var(--blur-effect);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px var(--shadow-color);
+}
+
+.product-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    flex-grow: 1;
+}
+
+.product-buttons {
+    display: grid;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.btn-buy {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+.btn-buy:hover {
+    opacity: 0.85;
+}
+
+.btn-shopee { background-color: var(--shopee-color); }
+.btn-tiktok { background-color: var(--tiktok-color); }
+.btn-lazada { background-color: var(--lazada-color); }
+
+/* --- Loader --- */
+.loader-container {
+    text-align: center;
+    padding: 50px;
+    color: var(--text-color);
+}
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid var(--primary-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- Pagination --- */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 40px 20px;
+    gap: 10px;
+}
+
+.pagination button {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.pagination button:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.pagination button.active {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+}
+
+/* --- Footer --- */
+.footer {
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 40px;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.footer-logos img {
+    height: 25px;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+.footer-logos img:hover {
+    opacity: 1;
+}
+
+.copyright {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    .slideshow-container {
+        aspect-ratio: 16 / 9; /* Sedikit lebih tinggi di layar medium */
+    }
+}
+
+@media (max-width: 480px) {
+    .controls-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .header {
+        padding: 20px 15px;
+    }
+    .profile-picture {
+        width: 80px;
+        height: 80px;
+    }
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+    .slideshow-container {
+        aspect-ratio: 4 / 3; /* Lebih tinggi lagi di layar kecil */
+    }
+}
