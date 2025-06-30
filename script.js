@@ -2,11 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- KONFIGURASI ---
     const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQz-eGx89LtYBROcJk3__Bu3qlooJV49VIPlxYsoQZ7m8X-8tC4XavoC3aOkhyDPoPWk4Xuc62EqSOC/pub?gid=0&single=true&output=csv';
     const SLIDESHOW_IMAGES = [
-        'https://i.imgur.com/MfTghyC.jpeg',
-        'https://i.imgur.com/Ub4EeGH.jpeg',
-        'https://i.imgur.com/dLsB8rB.jpeg',
-        'https://i.imgur.com/rnZgGbt.jpeg',
-        'https://i.imgur.com/JU15h4B.jpeg'
+        'https://i.imgur.com/RgDKlmT.jpeg',
+        'https://i.imgur.com/em0Re4Q.jpeg',
+        'https://i.imgur.com/NHDZkBa.jpeg',
+        'https://i.imgur.com/LbG1KcA.jpeg',
+        'https://i.imgur.com/NjbJnms.jpeg'
     ];
     const PRODUCTS_PER_PAGE = 20;
 
