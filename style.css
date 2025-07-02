@@ -109,8 +109,18 @@ body.dark-mode .theme-switcher .moon { display: none; } body.dark-mode .theme-sw
 .product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px var(--shadow-color); }
 .product-image { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
 .product-info { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; }
-.product-title { font-size: 1.1rem; font-weight: 600; margin-bottom: auto; } /* Diubah */
-.product-buttons { display: grid; gap: 10px; margin-top: 15px; } /* Diubah */
+
+/* Tata letak kartu produk diperbaiki */
+.product-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 15px; /* Jarak dari judul ke tombol */
+    flex-grow: 1; /* Mendorong semua tombol ke bawah */
+}
+.product-buttons {
+    display: grid;
+    gap: 10px;
+}
 .btn-buy, .btn-video {
     padding: 10px 15px; border: none; border-radius: 8px; color: white;
     text-decoration: none; text-align: center; font-weight: 500;
@@ -134,55 +144,29 @@ body.dark-mode .theme-switcher .moon { display: none; } body.dark-mode .theme-sw
     gap: 10px;
 }
 .btn-share {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border: none;
-    border-radius: 50%;
-    color: white;
-    text-decoration: none;
-    transition: transform 0.2s, opacity 0.2s;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border: none; border-radius: 50%;
+    color: white; text-decoration: none; transition: transform 0.2s, opacity 0.2s;
 }
-.btn-share:hover {
-    transform: scale(1.1);
-    opacity: 0.9;
-}
-.btn-share svg {
-    width: 16px;
-    height: 16px;
-}
+.btn-share:hover { transform: scale(1.1); opacity: 0.9; }
+.btn-share svg { width: 16px; height: 16px; }
 .btn-facebook { background-color: #1877F2; }
 .btn-x { background-color: #000000; }
 .btn-whatsapp { background-color: #25D366; }
 .btn-pinterest { background-color: #E60023; }
 .btn-instagram {
-    cursor: pointer;
-    background: #d6249f;
+    cursor: pointer; background: #d6249f;
     background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
 }
 
 /* Notifikasi untuk copy link */
 .copy-notification {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    z-index: 3000;
-    opacity: 0;
-    visibility: hidden;
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    background-color: #333; color: white; padding: 10px 20px;
+    border-radius: 8px; z-index: 3000; opacity: 0; visibility: hidden;
     transition: opacity 0.3s, visibility 0.3s;
 }
-.copy-notification.show {
-    opacity: 1;
-    visibility: visible;
-}
-
+.copy-notification.show { opacity: 1; visibility: visible; }
 
 /* --- Modal, Loader, Pagination, Footer --- */
 .modal-overlay { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.8); align-items: center; justify-content: center; }
@@ -195,7 +179,8 @@ body.dark-mode .theme-switcher .moon { display: none; } body.dark-mode .theme-sw
 .loader { border: 5px solid #f3f3f3; border-top: 5px solid var(--primary-color); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto 15px; }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 .pagination { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; padding: 40px 20px; gap: 10px; }
-.pagination button, .pagination span { background-color: var(--card-bg-color); border: 1px solid var(--border-color); color: var(--text-color); padding: 10px 15px; border-radius: 8px; cursor: pointer; transition: all 0.3s; }
+.pagination button, .pagination span { background-color: var(--card-bg-color); border: 1px solid var(--border-color); color: var(--text-color); padding: 10px 15px; border-radius: 8px; transition: all 0.3s; }
+.pagination button { cursor: pointer; }
 .pagination button:hover, .pagination button.active { background-color: var(--primary-color); color: white; border-color: var(--primary-color); }
 .pagination button:disabled { opacity: 0.5; cursor: not-allowed; }
 .pagination span { cursor: default; border: none; background: none; }
