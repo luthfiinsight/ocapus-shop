@@ -1,3 +1,69 @@
+/* ===== STYLE MENU BAHASA BARU ===== */
+.language-switcher {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.language-current {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    font-weight: 500;
+}
+.language-current img {
+    width: 24px;
+    height: auto;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.language-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    background-color: var(--card-bg-color);
+    backdrop-filter: var(--blur-effect);
+    -webkit-backdrop-filter: var(--blur-effect);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 8px 25px var(--shadow-color);
+    z-index: 1100;
+    min-width: 160px;
+    overflow: hidden;
+}
+.language-switcher:hover .language-dropdown {
+    display: block;
+}
+.language-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    transition: background-color 0.2s;
+}
+.language-option:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+body.dark-mode .language-option:hover {
+    background-color: rgba(255,255,255,0.05);
+}
+.language-option img {
+    width: 24px;
+    height: auto;
+    border-radius: 3px;
+}
+
 /* --- CSS Variables for Theming --- */
 :root {
     --bg-color: #f4f7f9;
@@ -13,7 +79,6 @@
     --lazada-color: #0F146D;
     --video-btn-color: #6c757d;
 }
-
 body.dark-mode {
     --bg-color: #121212;
     --card-bg-color: rgba(26, 26, 26, 0.7);
@@ -28,21 +93,15 @@ body.dark-mode {
 
 /* --- General Styles --- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
-    line-height: 1.6;
+    font-family: 'Poppins', sans-serif; background-color: var(--bg-color); color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s; line-height: 1.6;
 }
 
 /* --- Header --- */
 .header {
-    padding: 20px;
-    text-align: center;
-    background-color: var(--bg-color); 
-    border-bottom: 1px solid var(--border-color);
+    padding: 20px; text-align: center; background-color: var(--bg-color); 
+    border-bottom: 1px solid var(--border-color); position: relative; /* Diperlukan untuk menu bahasa */
 }
 .profile-picture {
     width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--primary-color);
@@ -59,9 +118,9 @@ body {
 
 /* --- Slideshow --- */
 .slideshow-container {
-    max-width: 1200px; width: 95%; position: relative;
-    margin: 20px auto 20px; overflow: hidden; border-radius: 12px;
-    box-shadow: 0 8px 25px var(--shadow-color); aspect-ratio: 16 / 7;
+    max-width: 1200px; width: 95%; position: relative; margin: 20px auto 20px;
+    overflow: hidden; border-radius: 12px; box-shadow: 0 8px 25px var(--shadow-color);
+    aspect-ratio: 16 / 7;
 }
 .slide { display: none; width: 100%; height: 100%; }
 .slide img { width: 100%; height: 100%; object-fit: cover; vertical-align: middle; }
@@ -125,17 +184,14 @@ body.dark-mode .theme-switcher .moon { display: none; } body.dark-mode .theme-sw
 .btn-lazada { background-color: var(--lazada-color); }
 .btn-video { background-color: var(--video-btn-color); }
 
-/* --- STYLE MODAL VIDEO BARU --- */
+/* --- STYLE MODAL VIDEO --- */
 .modal-overlay {
-    display: none; position: fixed; z-index: 2000;
-    left: 0; top: 0; width: 100%; height: 100%;
-    overflow: auto; background-color: rgba(0,0,0,0.8);
-    align-items: center; justify-content: center;
+    display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
+    overflow: auto; background-color: rgba(0,0,0,0.8); align-items: center; justify-content: center;
 }
 .modal-content {
-    position: relative; background-color: var(--bg-color);
-    margin: auto; padding: 20px; border: 1px solid var(--border-color);
-    width: 90%; max-width: 800px; border-radius: 12px;
+    position: relative; background-color: var(--bg-color); margin: auto; padding: 20px;
+    border: 1px solid var(--border-color); width: 90%; max-width: 800px; border-radius: 12px;
 }
 .modal-close {
     color: var(--text-color); position: absolute; top: 10px; right: 25px;
@@ -143,10 +199,7 @@ body.dark-mode .theme-switcher .moon { display: none; } body.dark-mode .theme-sw
 }
 .modal-close:hover, .modal-close:focus { color: red; text-decoration: none; }
 .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
-.video-wrapper iframe {
-    position: absolute; top: 0; left: 0;
-    width: 100%; height: 100%; border-radius: 8px;
-}
+.video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px; }
 
 /* --- Loader & Pagination --- */
 .loader-container { text-align: center; padding: 50px; color: var(--text-color); }
@@ -163,6 +216,7 @@ body.dark-mode .theme-switcher .moon { display: none; } body.dark-mode .theme-sw
 .pagination button:hover, .pagination button.active {
     background-color: var(--primary-color); color: white; border-color: var(--primary-color);
 }
+.pagination button:disabled { opacity: 0.5; cursor: not-allowed; }
 
 /* --- Footer --- */
 .footer { text-align: center; padding: 30px 20px; margin-top: 40px; border-top: 1px solid var(--border-color); }
@@ -176,10 +230,12 @@ body.dark-mode .theme-switcher .moon { display: none; } body.dark-mode .theme-sw
     .header h1 { font-size: 2rem; }
     .product-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
     .slideshow-container, .modal-content { aspect-ratio: 16 / 9; }
+    .language-switcher { top: 10px; right: 10px; }
 }
 @media (max-width: 480px) {
     .controls-container { flex-direction: column; align-items: stretch; }
-    .header { padding: 20px 15px; }
+    .header { padding-top: 70px; /* Beri ruang untuk menu bahasa */ }
+    .language-switcher { top: 10px; right: 50%; transform: translateX(50%); }
     .profile-picture { width: 80px; height: 80px; }
     .product-grid { grid-template-columns: 1fr; }
     .slideshow-container { aspect-ratio: 4 / 3; }
