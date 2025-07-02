@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ocapus-Shop | Affiliate Marketing</title>
+    <link rel="icon" href="https://i.imgur.com/xgjreSf.png">
     <meta name="description" content="Temukan produk terbaik dari Shopee, TikTok, dan Lazada. Belanja lebih mudah dengan Ocapus-Shop.">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" href="https://i.imgur.com/xgjreSf.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -26,8 +26,7 @@
         </div>
     </header>
 
-    <div class="slideshow-container">
-        </div>
+    <div class="slideshow-container"></div>
 
     <main class="main-content">
         <div class="controls-container">
@@ -39,6 +38,14 @@
                     <option value="all">Semua Kategori</option>
                 </select>
             </div>
+            <div class="filter-container">
+                <select id="ecommerce-filter" aria-label="Filter E-commerce">
+                    <option value="all">Semua E-commerce</option>
+                    <option value="shopee">Shopee</option>
+                    <option value="tiktok">TikTok</option>
+                    <option value="lazada">Lazada</option>
+                </select>
+            </div>
             <div class="theme-switcher">
                 <button id="dark-mode-toggle" aria-label="Toggle Dark Mode">
                     <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
@@ -47,16 +54,12 @@
             </div>
         </div>
 
-        <div id="product-catalog" class="product-grid">
-            </div>
-        
+        <div id="product-catalog" class="product-grid"></div>
         <div class="loader-container" id="loader">
             <div class="loader"></div>
             <p>Memuat Produk...</p>
         </div>
-
-        <div id="pagination-container" class="pagination">
-            </div>
+        <div id="pagination-container" class="pagination"></div>
     </main>
 
     <footer class="footer">
@@ -67,6 +70,15 @@
         </div>
         <p class="copyright">&copy; 2025 Ocapus-Shop</p>
     </footer>
+
+    <div id="video-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="video-wrapper">
+                <iframe id="video-frame" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
