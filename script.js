@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- FUNGSI FILTER & PENCARIAN (TELAH DIPERBAIKI) ---
+    // --- FUNGSI FILTER & PENCARIAN (DIPERBARUI UNTUK MULTI-KATEGORI) ---
     function applyFilters() {
         const searchTerm = searchInput.value.toLowerCase();
         const selectedCategory = categoryFilter.value;
@@ -135,8 +135,10 @@ document.addEventListener('DOMContentLoaded', () => {
         filteredProducts = allProducts.filter(product => {
             const matchesSearch = product.judul.toLowerCase().includes(searchTerm);
             
-            // INI BAGIAN YANG DIPERBAIKI
-            const matchesCategory = selectedCategory === 'all' || product.kategori.toLowerCase() === selectedCategory.toLowerCase();
+            // Logika baru untuk multi-kategori
+            // Memeriksa apakah daftar kategori produk (setelah dipecah) mengandung kategori yang dipilih
+            const productCategories = product.kategori.toLowerCase().split(',').map(cat => cat.trim());
+            const matchesCategory = selectedCategory === 'all' || productCategories.includes(selectedCategory.toLowerCase());
             
             let matchesEcommerce = true;
             if (selectedEcommerce !== 'all') {
@@ -151,12 +153,19 @@ document.addEventListener('DOMContentLoaded', () => {
         renderPagination();
     }
 
+    // --- FUNGSI PEMBUATAN FILTER KATEGORI (DIPERBARUI UNTUK MULTI-KATEGORI) ---
     function setupCategoryFilter() {
-        // Menghapus pilihan lama kecuali "Semua Kategori"
         categoryFilter.innerHTML = '<option value="all">Semua Kategori</option>';
-        const categories = [...new Set(allProducts.map(p => p.kategori).filter(Boolean))];
-        categories.sort().forEach(category => {
-            categoryFilter.insertAdjacentHTML('beforeend', `<option value="${category}">${category}</option>`);
+        
+        // Logika baru untuk mengambil semua kategori unik dari string yang dipisahkan koma
+        const allIndividualCategories = allProducts.flatMap(p => 
+            p.kategori ? p.kategori.split(',').map(cat => cat.trim()) : []
+        );
+        const uniqueCategories = [...new Set(allIndividualCategories.filter(Boolean))];
+
+        uniqueCategories.sort().forEach(category => {
+            // Gunakan category asli (dengan huruf besar/kecil) untuk tampilan, tapi value bisa lowercase untuk konsistensi
+            categoryFilter.insertAdjacentHTML('beforeend', `<option value="${category.toLowerCase()}">${category}</option>`);
         });
     }
     
@@ -202,21 +211,4 @@ document.addEventListener('DOMContentLoaded', () => {
             videoModal.style.display = 'none';
             videoFrame.src = '';
         });
-        window.addEventListener('click', (event) => {
-            if (event.target == videoModal) {
-                videoModal.style.display = 'none';
-                videoFrame.src = '';
-            }
-        });
-    }
-
-    function setupEventListeners() {
-        searchInput.addEventListener('input', applyFilters);
-        categoryFilter.addEventListener('change', applyFilters);
-        ecommerceFilter.addEventListener('change', applyFilters);
-    }
-
-    function showLoader(show) {
-        loader.style.display = show ? 'block' : 'none';
-    }
-});
+        window.addEventListener('click', (event)
