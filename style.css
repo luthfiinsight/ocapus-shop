@@ -28,6 +28,7 @@ body.dark-mode .language-option:hover { background-color: rgba(255,255,255,0.05)
     --text-color: #1a1a1a; --primary-color: #007bff; --border-color: #e0e0e0;
     --shadow-color: rgba(0, 0, 0, 0.08); --blur-effect: blur(10px);
     --shopee-color: #EE4D2D; --tiktok-color: #000000; --lazada-color: #0F146D;
+    --aliexpress-color: #FF4747; /* Warna awal, akan dioverride */
     --video-btn-color: #6c757d;
 }
 body.dark-mode {
@@ -109,18 +110,11 @@ body.dark-mode .theme-switcher .moon { display: none; } body.dark-mode .theme-sw
 .product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px var(--shadow-color); }
 .product-image { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
 .product-info { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; }
-
-/* Tata letak kartu produk diperbaiki */
 .product-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 15px; /* Jarak dari judul ke tombol */
-    flex-grow: 1; /* Mendorong semua tombol ke bawah */
+    font-size: 1.1rem; font-weight: 600;
+    margin-bottom: 15px; flex-grow: 1;
 }
-.product-buttons {
-    display: grid;
-    gap: 10px;
-}
+.product-buttons { display: grid; gap: 10px; }
 .btn-buy, .btn-video {
     padding: 10px 15px; border: none; border-radius: 8px; color: white;
     text-decoration: none; text-align: center; font-weight: 500;
@@ -130,19 +124,23 @@ body.dark-mode .theme-switcher .moon { display: none; } body.dark-mode .theme-sw
 .btn-shopee { background-color: var(--shopee-color); }
 .btn-tiktok { background-color: var(--tiktok-color); }
 .btn-lazada { background-color: var(--lazada-color); }
+.btn-aliexpress {
+    background: linear-gradient(to right, #FF69B4, #FFFF00); /* Gradasi Pink ke Kuning */
+    border: 1px solid #FF69B4; /* Warna border awal */
+}
+.btn-aliexpress:hover {
+    opacity: 0.9;
+    background: linear-gradient(to right, #FF1493, #FFD700); /* Sedikit perubahan gradasi saat hover */
+    border-color: #FF1493;
+}
 .btn-video { background-color: var(--video-btn-color); }
 
-/* ===== STYLE TOMBOL SHARE BARU ===== */
+/* ===== STYLE TOMBOL SHARE ===== */
 .share-container {
-    padding-top: 15px;
-    margin-top: 15px;
+    padding-top: 15px; margin-top: 15px;
     border-top: 1px solid var(--border-color);
 }
-.share-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
+.share-buttons { display: flex; justify-content: center; gap: 10px; }
 .btn-share {
     display: inline-flex; align-items: center; justify-content: center;
     width: 32px; height: 32px; border: none; border-radius: 50%;
@@ -167,6 +165,86 @@ body.dark-mode .theme-switcher .moon { display: none; } body.dark-mode .theme-sw
     transition: opacity 0.3s, visibility 0.3s;
 }
 .copy-notification.show { opacity: 1; visibility: visible; }
+
+/* --- Tombol Chat WhatsApp (DIPERBARUI) --- */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+.whatsapp-container {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 100;
+}
+.whatsapp-float {
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+    animation: bounce 2s infinite;
+    animation-delay: 3s; /* Mulai bounce setelah 3 detik */
+}
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    animation: none; /* Hentikan bounce saat di-hover */
+}
+.whatsapp-float svg {
+    width: 32px;
+    height: 32px;
+}
+.whatsapp-bubble {
+    position: absolute;
+    bottom: 75px; /* Posisi di atas tombol WA */
+    right: 0;
+    background-color: #E7FFDB; /* Warna hijau muda bubble chat */
+    color: #333;
+    padding: 10px 15px;
+    border-radius: 12px;
+    width: max-content; /* Lebar menyesuaikan teks */
+    max-width: 200px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: -1;
+}
+.whatsapp-bubble.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.whatsapp-bubble-arrow {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top-color: #E7FFDB;
+    border-bottom: 0;
+    border-right: 0;
+    margin-left: -5px;
+}
 
 /* --- Modal, Loader, Pagination, Footer --- */
 .modal-overlay { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.8); align-items: center; justify-content: center; }
@@ -196,6 +274,21 @@ body.dark-mode .theme-switcher .moon { display: none; } body.dark-mode .theme-sw
     .product-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
     .slideshow-container, .modal-content { aspect-ratio: 16 / 9; }
     .language-switcher { top: 10px; right: 10px; }
+    .whatsapp-container {
+        bottom: 20px;
+        right: 20px;
+    }
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+    }
+    .whatsapp-float svg {
+        width: 28px;
+        height: 28px;
+    }
+    .whatsapp-bubble {
+        bottom: 65px;
+    }
 }
 @media (max-width: 480px) {
     .controls-container { flex-direction: column; align-items: stretch; }
