@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return data;
     }
 
-    // --- FUNGSI RENDER TAMPILAN (DIPERBARUI) ---
+    // --- FUNGSI RENDER TAMPILAN ---
     function renderProducts() {
         catalog.innerHTML = '';
         const paginatedProducts = filteredProducts.slice((currentPage - 1) * PRODUCTS_PER_PAGE, currentPage * PRODUCTS_PER_PAGE);
@@ -82,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         paginatedProducts.forEach(product => {
-            // --- Logika Cerdas untuk Tombol Video ---
             let videoButtonHTML = '';
             if (product.youtube_video) {
                 videoButtonHTML = `<button class="btn-video" data-video-src="${product.youtube_video}">Lihat Video</button>`;
@@ -127,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- FUNGSI FILTER & PENCARIAN ---
+    // --- FUNGSI FILTER & PENCARIAN (TELAH DIPERBAIKI) ---
     function applyFilters() {
         const searchTerm = searchInput.value.toLowerCase();
         const selectedCategory = categoryFilter.value;
@@ -135,11 +134,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         filteredProducts = allProducts.filter(product => {
             const matchesSearch = product.judul.toLowerCase().includes(searchTerm);
-            const matchesCategory = selectedCategory === 'all' || product.kategori.toLowerCase() === selectedCategory;
+            
+            // INI BAGIAN YANG DIPERBAIKI
+            const matchesCategory = selectedCategory === 'all' || product.kategori.toLowerCase() === selectedCategory.toLowerCase();
+            
             let matchesEcommerce = true;
             if (selectedEcommerce !== 'all') {
                 matchesEcommerce = product[selectedEcommerce] && product[selectedEcommerce].trim() !== '';
             }
+            
             return matchesSearch && matchesCategory && matchesEcommerce;
         });
         
@@ -149,6 +152,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function setupCategoryFilter() {
+        // Menghapus pilihan lama kecuali "Semua Kategori"
+        categoryFilter.innerHTML = '<option value="all">Semua Kategori</option>';
         const categories = [...new Set(allProducts.map(p => p.kategori).filter(Boolean))];
         categories.sort().forEach(category => {
             categoryFilter.insertAdjacentHTML('beforeend', `<option value="${category}">${category}</option>`);
