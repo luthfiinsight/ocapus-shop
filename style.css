@@ -1,93 +1,39 @@
 /* ===== STYLE MENU BAHASA BARU ===== */
-.language-switcher {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
+.language-switcher { position: absolute; top: 20px; right: 20px; }
 .language-current {
-    background-color: var(--card-bg-color);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 8px 12px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'Poppins', sans-serif;
-    color: var(--text-color);
-    font-weight: 500;
+    background-color: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 8px;
+    padding: 8px 12px; cursor: pointer; display: flex; align-items: center; gap: 8px;
+    font-family: 'Poppins', sans-serif; color: var(--text-color); font-weight: 500;
 }
-.language-current img {
-    width: 24px;
-    height: auto;
-    border-radius: 3px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
+.language-current img { width: 24px; height: auto; border-radius: 3px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
 .language-dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    margin-top: 8px;
-    background-color: var(--card-bg-color);
-    backdrop-filter: var(--blur-effect);
-    -webkit-backdrop-filter: var(--blur-effect);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    box-shadow: 0 8px 25px var(--shadow-color);
-    z-index: 1100;
-    min-width: 160px;
-    overflow: hidden;
+    display: none; position: absolute; top: 100%; right: 0; margin-top: 8px;
+    background-color: var(--card-bg-color); backdrop-filter: var(--blur-effect);
+    -webkit-backdrop-filter: var(--blur-effect); border: 1px solid var(--border-color);
+    border-radius: 8px; box-shadow: 0 8px 25px var(--shadow-color); z-index: 1100;
+    min-width: 160px; overflow: hidden;
 }
-.language-switcher:hover .language-dropdown {
-    display: block;
-}
+.language-switcher:hover .language-dropdown { display: block; }
 .language-option {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 15px;
-    text-decoration: none;
-    color: var(--text-color);
-    font-size: 0.95rem;
-    transition: background-color 0.2s;
+    display: flex; align-items: center; gap: 10px; padding: 10px 15px; text-decoration: none;
+    color: var(--text-color); font-size: 0.95rem; transition: background-color 0.2s;
 }
-.language-option:hover {
-    background-color: rgba(0,0,0,0.05);
-}
-body.dark-mode .language-option:hover {
-    background-color: rgba(255,255,255,0.05);
-}
-.language-option img {
-    width: 24px;
-    height: auto;
-    border-radius: 3px;
-}
+.language-option:hover { background-color: rgba(0,0,0,0.05); }
+body.dark-mode .language-option:hover { background-color: rgba(255,255,255,0.05); }
+.language-option img { width: 24px; height: auto; border-radius: 3px; }
 
 /* --- CSS Variables for Theming --- */
 :root {
-    --bg-color: #f4f7f9;
-    --card-bg-color: rgba(255, 255, 255, 0.7);
-    --header-bg-color: rgba(255, 255, 255, 0.5);
-    --text-color: #1a1a1a;
-    --primary-color: #007bff;
-    --border-color: #e0e0e0;
-    --shadow-color: rgba(0, 0, 0, 0.08);
-    --blur-effect: blur(10px);
-    --shopee-color: #EE4D2D;
-    --tiktok-color: #000000;
-    --lazada-color: #0F146D;
+    --bg-color: #f4f7f9; --card-bg-color: rgba(255, 255, 255, 0.7);
+    --text-color: #1a1a1a; --primary-color: #007bff; --border-color: #e0e0e0;
+    --shadow-color: rgba(0, 0, 0, 0.08); --blur-effect: blur(10px);
+    --shopee-color: #EE4D2D; --tiktok-color: #000000; --lazada-color: #0F146D;
     --video-btn-color: #6c757d;
 }
 body.dark-mode {
-    --bg-color: #121212;
-    --card-bg-color: rgba(26, 26, 26, 0.7);
-    --header-bg-color: rgba(26, 26, 26, 0.5);
-    --text-color: #f1f1f1;
-    --primary-color: #389bff;
-    --border-color: #333;
-    --shadow-color: rgba(0, 0, 0, 0.2);
-    --tiktok-color: #FE2C55;
+    --bg-color: #121212; --card-bg-color: rgba(26, 26, 26, 0.7);
+    --text-color: #f1f1f1; --primary-color: #389bff; --border-color: #333;
+    --shadow-color: rgba(0, 0, 0, 0.2); --tiktok-color: #FE2C55;
     --video-btn-color: #adb5bd;
 }
 
@@ -101,17 +47,14 @@ body {
 /* --- Header --- */
 .header {
     padding: 20px; text-align: center; background-color: var(--bg-color); 
-    border-bottom: 1px solid var(--border-color); position: relative; /* Diperlukan untuk menu bahasa */
+    border-bottom: 1px solid var(--border-color); position: relative;
 }
 .profile-picture {
     width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--primary-color);
     object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 15px var(--shadow-color);
 }
 .header h1 { font-size: 2.5rem; font-weight: 700; }
-.header .description {
-    font-size: 1.1rem; max-width: 600px; margin: 0 auto 15px;
-    color: var(--text-color); opacity: 0.9;
-}
+.header .description { font-size: 1.1rem; max-width: 600px; margin: 0 auto 15px; color: var(--text-color); opacity: 0.9; }
 .social-media { display: flex; justify-content: center; gap: 20px; }
 .social-media a { color: var(--text-color); transition: color 0.3s, transform 0.3s; }
 .social-media a:hover { color: var(--primary-color); transform: scale(1.1); }
@@ -145,8 +88,6 @@ body {
 #search-input { width: 100%; }
 .filter-container { flex-grow: 1; min-width: 180px; }
 #category-filter, #ecommerce-filter { width: 100%; }
-
-/* --- Theme Switcher --- */
 .theme-switcher button {
     background: none; border: 1px solid var(--border-color); color: var(--text-color);
     padding: 10px; border-radius: 8px; cursor: pointer; display: flex;
@@ -158,10 +99,7 @@ body.dark-mode .theme-switcher .moon { display: none; } body.dark-mode .theme-sw
 
 /* --- Product Catalog --- */
 .main-content { padding: 0 20px; }
-.product-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 25px; max-width: 1200px; margin: 0 auto;
-}
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
 .product-card {
     background-color: var(--card-bg-color); backdrop-filter: var(--blur-effect);
     -webkit-backdrop-filter: var(--blur-effect); border: 1px solid var(--border-color);
@@ -171,8 +109,8 @@ body.dark-mode .theme-switcher .moon { display: none; } body.dark-mode .theme-sw
 .product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px var(--shadow-color); }
 .product-image { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
 .product-info { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; }
-.product-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 10px; flex-grow: 1; }
-.product-buttons { display: grid; gap: 10px; margin-top: auto; }
+.product-title { font-size: 1.1rem; font-weight: 600; margin-bottom: auto; } /* Diubah */
+.product-buttons { display: grid; gap: 10px; margin-top: 15px; } /* Diubah */
 .btn-buy, .btn-video {
     padding: 10px 15px; border: none; border-radius: 8px; color: white;
     text-decoration: none; text-align: center; font-weight: 500;
@@ -184,41 +122,83 @@ body.dark-mode .theme-switcher .moon { display: none; } body.dark-mode .theme-sw
 .btn-lazada { background-color: var(--lazada-color); }
 .btn-video { background-color: var(--video-btn-color); }
 
-/* --- STYLE MODAL VIDEO --- */
-.modal-overlay {
-    display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
-    overflow: auto; background-color: rgba(0,0,0,0.8); align-items: center; justify-content: center;
+/* ===== STYLE TOMBOL SHARE BARU ===== */
+.share-container {
+    padding-top: 15px;
+    margin-top: 15px;
+    border-top: 1px solid var(--border-color);
 }
-.modal-content {
-    position: relative; background-color: var(--bg-color); margin: auto; padding: 20px;
-    border: 1px solid var(--border-color); width: 90%; max-width: 800px; border-radius: 12px;
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
-.modal-close {
-    color: var(--text-color); position: absolute; top: 10px; right: 25px;
-    font-size: 35px; font-weight: bold; cursor: pointer;
+.btn-share {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    transition: transform 0.2s, opacity 0.2s;
 }
+.btn-share:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+.btn-share svg {
+    width: 16px;
+    height: 16px;
+}
+.btn-facebook { background-color: #1877F2; }
+.btn-x { background-color: #000000; }
+.btn-whatsapp { background-color: #25D366; }
+.btn-pinterest { background-color: #E60023; }
+.btn-instagram {
+    cursor: pointer;
+    background: #d6249f;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+}
+
+/* Notifikasi untuk copy link */
+.copy-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    z-index: 3000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.copy-notification.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* --- Modal, Loader, Pagination, Footer --- */
+.modal-overlay { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.8); align-items: center; justify-content: center; }
+.modal-content { position: relative; background-color: var(--bg-color); margin: auto; padding: 20px; border: 1px solid var(--border-color); width: 90%; max-width: 800px; border-radius: 12px; }
+.modal-close { color: var(--text-color); position: absolute; top: 10px; right: 25px; font-size: 35px; font-weight: bold; cursor: pointer; }
 .modal-close:hover, .modal-close:focus { color: red; text-decoration: none; }
 .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
 .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px; }
-
-/* --- Loader & Pagination --- */
 .loader-container { text-align: center; padding: 50px; color: var(--text-color); }
-.loader {
-    border: 5px solid #f3f3f3; border-top: 5px solid var(--primary-color); border-radius: 50%;
-    width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto 15px;
-}
+.loader { border: 5px solid #f3f3f3; border-top: 5px solid var(--primary-color); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto 15px; }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 .pagination { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; padding: 40px 20px; gap: 10px; }
-.pagination button {
-    background-color: var(--card-bg-color); border: 1px solid var(--border-color); color: var(--text-color);
-    padding: 10px 15px; border-radius: 8px; cursor: pointer; transition: all 0.3s;
-}
-.pagination button:hover, .pagination button.active {
-    background-color: var(--primary-color); color: white; border-color: var(--primary-color);
-}
+.pagination button, .pagination span { background-color: var(--card-bg-color); border: 1px solid var(--border-color); color: var(--text-color); padding: 10px 15px; border-radius: 8px; cursor: pointer; transition: all 0.3s; }
+.pagination button:hover, .pagination button.active { background-color: var(--primary-color); color: white; border-color: var(--primary-color); }
 .pagination button:disabled { opacity: 0.5; cursor: not-allowed; }
-
-/* --- Footer --- */
+.pagination span { cursor: default; border: none; background: none; }
 .footer { text-align: center; padding: 30px 20px; margin-top: 40px; border-top: 1px solid var(--border-color); }
 .footer-logos { display: flex; justify-content: center; align-items: center; gap: 30px; margin-bottom: 20px; }
 .footer-logos img { height: 25px; opacity: 0.7; transition: opacity 0.3s; }
@@ -234,7 +214,7 @@ body.dark-mode .theme-switcher .moon { display: none; } body.dark-mode .theme-sw
 }
 @media (max-width: 480px) {
     .controls-container { flex-direction: column; align-items: stretch; }
-    .header { padding-top: 70px; /* Beri ruang untuk menu bahasa */ }
+    .header { padding-top: 70px; }
     .language-switcher { top: 10px; right: 50%; transform: translateX(50%); }
     .profile-picture { width: 80px; height: 80px; }
     .product-grid { grid-template-columns: 1fr; }
