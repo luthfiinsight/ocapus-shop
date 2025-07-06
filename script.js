@@ -29,10 +29,18 @@ document.addEventListener('DOMContentLoaded', () => {
           langDropdown = document.getElementById('lang-dropdown');
 
     async function init() {
-        setLanguage(currentLang); setupLanguageSwitcher(); setupDarkMode(); setupSlideshow();
-        setupModalListeners(); setupWhatsAppPopup(); showLoader(true);
+        setLanguage(currentLang); 
+        setupLanguageSwitcher(); 
+        setupDarkMode(); 
+        setupSlideshow();
+        setupModalListeners(); 
+        setupWhatsAppPopup(); 
+        setupVisitorCounter();
+        showLoader(true);
         try {
-            await fetchData(); setupCategoryFilter(); applyFilters();
+            await fetchData(); 
+            setupCategoryFilter(); 
+            applyFilters();
         } catch (error) {
             console.error("Error initializing app:", error);
             catalog.innerHTML = `<p style="text-align:center; color:red;">Gagal memuat data. Periksa URL Google Sheet.</p>`;
@@ -242,6 +250,61 @@ document.addEventListener('DOMContentLoaded', () => {
     function showLoader(show) {
         loader.style.display = show ? 'block' : 'none';
         if (show) loader.querySelector('p').innerText = translations[currentLang].loading_products;
+    }
+    
+    function setupVisitorCounter() {
+        const counterContainer = document.getElementById('visitor-counter');
+        if (!counterContainer) return;
+
+        // Helper untuk mendapatkan tanggal dalam format YYYY-MM-DD di zona waktu GMT+7
+        const getGmt7DateString = () => {
+            const now = new Date();
+            const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+            const gmt7Date = new Date(utc + (3600000 * 7));
+            return gmt7Date.toISOString().split('T')[0];
+        };
+
+        const today = getGmt7DateString();
+        let lastResetDate = localStorage.getItem('counterResetDate');
+        let totalVisitors = 0;
+        let uniqueVisitors = 0;
+
+        // Cek apakah hari telah berganti (berdasarkan GMT+7)
+        if (lastResetDate !== today) {
+            // Hari baru, reset semua penghitung
+            localStorage.setItem('counterResetDate', today);
+            localStorage.setItem('totalVisits', '1');
+            localStorage.setItem('uniqueVisits', '1');
+            localStorage.setItem('lastUniqueVisitDate', today); // Tandai user ini sudah dihitung sebagai unik hari ini
+            totalVisitors = 1;
+            uniqueVisitors = 1;
+        } else {
+            // Masih di hari yang sama
+            totalVisitors = parseInt(localStorage.getItem('totalVisits') || '0') + 1;
+            localStorage.setItem('totalVisits', totalVisitors.toString());
+
+            uniqueVisitors = parseInt(localStorage.getItem('uniqueVisits') || '0');
+            const lastUniqueVisitDate = localStorage.getItem('lastUniqueVisitDate');
+
+            // Jika user ini belum dihitung sebagai unik hari ini, tambahkan hitungan unik
+            if (lastUniqueVisitDate !== today) {
+                uniqueVisitors += 1;
+                localStorage.setItem('uniqueVisits', uniqueVisitors.toString());
+                localStorage.setItem('lastUniqueVisitDate', today);
+            }
+        }
+
+        // Tampilkan hasil di footer
+        counterContainer.innerHTML = `
+            <div class="counter-item" title="Pengunjung Unik Hari Ini">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                <span>${uniqueVisitors}</span>
+            </div>
+            <div class="counter-item" title="Total Kunjungan Hari Ini">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                <span>${totalVisitors}</span>
+            </div>
+        `;
     }
     
     init();
