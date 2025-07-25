@@ -267,35 +267,6 @@ body.dark-mode .theme-switcher .moon { display: none; } body.dark-mode .theme-sw
 .footer-logos img { height: 25px; opacity: 0.7; transition: opacity 0.3s; }
 .footer-logos img:hover { opacity: 1; }
 
-.visitor-counter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 25px;
-    margin-bottom: 20px;
-    padding: 10px 0;
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-    flex-wrap: wrap; /* Agar responsif di layar kecil */
-}
-.counter-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.95rem;
-    color: var(--text-color);
-}
-.counter-item svg {
-    width: 20px;
-    height: 20px;
-    opacity: 0.9;
-}
-.counter-item span {
-    font-weight: 600;
-    min-width: 20px;
-    text-align: left;
-}
-
 .copyright { font-size: 0.9rem; opacity: 0.8; }
 
 /* --- Responsive Design --- */
