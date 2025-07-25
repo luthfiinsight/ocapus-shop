@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setupSlideshow();
         setupModalListeners(); 
         setupWhatsAppPopup(); 
-        setupVisitorCounter();
         showLoader(true);
         try {
             await fetchData(); 
@@ -104,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const shareText = encodeURIComponent(`Lihat produk ini: ${product.judul} - ${window.location.href}`);
             const shareImage = encodeURIComponent(product.gambar);
             
-            // --- KODE SHARE BUTTONS DENGAN LOGO PINTEREST BARU ---
             const shareButtonsHTML = `<div class="share-container"><div class="share-buttons"><a href="https://www.facebook.com/sharer/sharer.php?u=${productPageUrl}" target="_blank" class="btn-share btn-facebook" aria-label="Share to Facebook"><svg viewBox="0 0 320 512"><path fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg></a><a href="https://twitter.com/intent/tweet?url=${productPageUrl}&text=${shareText}" target="_blank" class="btn-share btn-x" aria-label="Share to X"><svg viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></a><a href="https://api.whatsapp.com/send?text=${shareText}" target="_blank" class="btn-share btn-whatsapp" aria-label="Share to WhatsApp"><svg viewBox="0 0 448 512"><path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.8 0-67.6-9.2-96.7-25.4l-7.1-4.2-71.7 18.9L99.8 352l-4.5-7.3C81.7 315 71.5 281.3 71.5 246.6c0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg></a><a href="https://www.pinterest.com/pin/create/button/?url=${productPageUrl}&media=${shareImage}&description=${shareText}" target="_blank" class="btn-share btn-pinterest" aria-label="Share to Pinterest"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9,21 8.95,20.38 9.1,19.88L9.6,17.65C9.6,17.65 9.38,17.15 9.38,16.5C9.38,15.42 10.16,14.5 11.1,14.5C11.9,14.5 12.3,15.13 12.3,15.75C12.3,16.54 11.7,18.23 11.43,19.5C11.2,20.62 12.13,21.5 13.25,21.5C15.23,21.5 16.7,19.23 16.7,16.2C16.7,13.68 14.83,11.81 12.15,11.81C8.98,11.81 7.13,14.28 7.13,16.95C7.13,17.92 7.5,18.93 8.13,19.5C8.25,19.63 8.38,19.63 8.5,19.5L9,17.63C9,17.63 9.13,17.13 9.13,16.88C9.13,16.3 8.88,15.88 8.5,15.5C8.06,15.06 7.63,14.75 7.63,13.94C7.63,12.56 8.88,10.5 12.23,10.5C16,10.5 18.13,13.38 18.13,16.13C18.13,19.14 16.13,22 13.38,22C11.88,22 10.63,21.06 10.63,19.88C10.63,18.88 11.06,17.88 11.06,17.88C11.06,17.88 10.3,20.63 10,21.75C9.75,22.88 9,24 9,24C9,24 9.5,24 10,23.88C15,22.25 19.88,17.13 19.88,11.75C19.88,6.88 16.38,2 12,2Z" /></svg></a><button class="btn-share btn-instagram btn-copy-link" data-link-to-copy="${window.location.href}" aria-label="Copy link for Instagram"><svg viewBox="0 0 448 512"><path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9 26.3 26.2 58 34.4 93.9 36.2 37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg></button></div></div>`;
 
             const productCard = `<div class="product-card"><img src="${product.gambar}" alt="${product.judul}" class="product-image" loading="lazy"><div class="product-info"><h3 class="product-title">${product.judul}</h3><div class="product-buttons">${product.shopee ? `<a href="${product.shopee}" target="_blank" rel="noopener noreferrer" class="btn-buy btn-shopee">${translations[currentLang].buy_on_shopee}</a>` : ''}${product.tiktok ? `<a href="${product.tiktok}" target="_blank" rel="noopener noreferrer" class="btn-buy btn-tiktok">${translations[currentLang].buy_on_tiktok}</a>` : ''}${product.lazada ? `<a href="${product.lazada}" target="_blank" rel="noopener noreferrer" class="btn-buy btn-lazada">${translations[currentLang].buy_on_lazada}</a>` : ''}${product.aliexpress ? `<a href="${product.aliexpress}" target="_blank" rel="noopener noreferrer" class="btn-buy btn-aliexpress">${translations[currentLang].buy_on_aliexpress}</a>` : ''}${videoButtonHTML}</div>${shareButtonsHTML}</div></div>`;
@@ -253,55 +251,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function showLoader(show) {
         loader.style.display = show ? 'block' : 'none';
         if (show) loader.querySelector('p').innerText = translations[currentLang].loading_products;
-    }
-    
-    function setupVisitorCounter() {
-        const counterContainer = document.getElementById('visitor-counter');
-        if (!counterContainer) return;
-
-        const getGmt7DateString = () => {
-            const now = new Date();
-            const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-            const gmt7Date = new Date(utc + (3600000 * 7));
-            return gmt7Date.toISOString().split('T')[0];
-        };
-
-        const today = getGmt7DateString();
-        let lastResetDate = localStorage.getItem('counterResetDate');
-        let totalVisitors = 0;
-        let uniqueVisitors = 0;
-
-        if (lastResetDate !== today) {
-            localStorage.setItem('counterResetDate', today);
-            localStorage.setItem('totalVisits', '1');
-            localStorage.setItem('uniqueVisits', '1');
-            localStorage.setItem('lastUniqueVisitDate', today);
-            totalVisitors = 1;
-            uniqueVisitors = 1;
-        } else {
-            totalVisitors = parseInt(localStorage.getItem('totalVisits') || '0') + 1;
-            localStorage.setItem('totalVisits', totalVisitors.toString());
-
-            uniqueVisitors = parseInt(localStorage.getItem('uniqueVisits') || '0');
-            const lastUniqueVisitDate = localStorage.getItem('lastUniqueVisitDate');
-
-            if (lastUniqueVisitDate !== today) {
-                uniqueVisitors += 1;
-                localStorage.setItem('uniqueVisits', uniqueVisitors.toString());
-                localStorage.setItem('lastUniqueVisitDate', today);
-            }
-        }
-
-        counterContainer.innerHTML = `
-            <div class="counter-item" title="Pengunjung Unik Hari Ini">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                <span>${uniqueVisitors}</span>
-            </div>
-            <div class="counter-item" title="Total Kunjungan Hari Ini">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                <span>${totalVisitors}</span>
-            </div>
-        `;
     }
     
     init();
